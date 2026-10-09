@@ -1,0 +1,37 @@
+- name: Home
+  columns:
+    - size: small
+      widgets:
+        - type: calendar
+          first-day-of-week: monday
+        $include: ../widgets/rss.yml
+
+    - size: full
+      widgets:
+        - type: search
+          search-engine: duckduckgo
+          autofocus: true
+        - type: group
+          widgets:
+            - type: hacker-news
+            - type: lobsters
+        $include: ../widgets/videos.yml
+        - type: group
+          widgets:
+            - type: reddit
+              subreddit: selfhosted
+              show-thumbnails: true
+            - type: reddit
+              subreddit: homelab
+              show-thumbnails: true
+            - type: reddit
+              subreddit: technology
+              show-thumbnails: true
+
+    - size: small
+      widgets:
+        - type: weather
+          location: Paris, France
+          units: metric
+          hour-format: 24h
+        $include: ../widgets/markets.yml

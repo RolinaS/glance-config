@@ -1,0 +1,54 @@
+# url       : adresse cliquable (via NPM, fonctionne au bureau et via Tailscale)
+# check-url : adresse testée par Glance depuis le serveur (IP locale, plus fiable)
+- type: monitor
+  cache: 1m
+  title: Infrastructure
+  sites:
+    - title: Proxmox
+      url: https://pve.${DOMAIN}
+      check-url: ${PVE_URL}
+      icon: di:proxmox
+      allow-insecure: true
+    - title: Portainer
+      url: https://portainer.${DOMAIN}
+      check-url: ${PORTAINER_URL}
+      icon: di:portainer
+      allow-insecure: true
+    - title: Nginx Proxy Manager
+      url: https://npm.${DOMAIN}
+      check-url: ${NPM_URL}
+      icon: di:nginx-proxy-manager
+    - title: Freebox
+      url: https://mafreebox.freebox.fr
+      check-url: ${GATEWAY_URL}
+      icon: di:freebox
+
+- type: monitor
+  cache: 1m
+  title: Supervision
+  sites:
+    - title: Grafana
+      url: https://grafana.${DOMAIN}
+      check-url: ${GRAFANA_URL}/api/health
+      icon: di:grafana
+    - title: Prometheus
+      url: ${PROMETHEUS_URL}
+      check-url: ${PROMETHEUS_URL}/-/healthy
+      icon: di:prometheus
+    - title: Uptime Kuma
+      url: https://kuma.${DOMAIN}
+      check-url: ${KUMA_URL}
+      icon: di:uptime-kuma
+
+# Décommente les services au fur et à mesure de la phase 3
+#- type: monitor
+#  cache: 1m
+#  title: Applications
+#  sites:
+#    - title: Docmost
+#      url: https://docs.${DOMAIN}
+#      check-url: ${DOCMOST_URL}
+#      icon: di:docmost
+#    - title: Nextcloud
+#      url: https://cloud.${DOMAIN}
+#      icon: di:nextcloud

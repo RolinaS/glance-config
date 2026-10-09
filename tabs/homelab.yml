@@ -1,0 +1,22 @@
+- name: Homelab
+  columns:
+    - size: small
+      widgets:
+        $include: ../widgets/proxmox.yml
+        $include: ../widgets/bookmarks.yml
+
+    - size: full
+      widgets:
+        $include: ../widgets/monitors.yml
+        $include: ../widgets/uptime-kuma.yml
+
+    - size: small
+      widgets:
+        - type: clock
+          hour-format: 24h
+          timezones:
+            - timezone: America/New_York
+              label: New York
+            - timezone: Asia/Tokyo
+              label: Tokyo
+        $include: ../widgets/releases.yml

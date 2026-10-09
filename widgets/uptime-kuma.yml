@@ -1,0 +1,40 @@
+# Lit la page de statut publique d'Uptime Kuma (slug : homelab)
+# Permet d'afficher ce que Glance ne peut pas tester seul (Minecraft en TCP, etc.)
+- type: custom-api
+  title: Sondes Uptime Kuma
+  title-url: https://kuma.${DOMAIN}
+  url: ${KUMA_URL}/api/status-page/homelab
+  subrequests:
+    heartbeats:
+      url: ${KUMA_URL}/api/status-page/heartbeat/homelab
+  cache: 1m
+  template: |
+    {{ $hb := .Subrequest "heartbeats" }}
+    {{ if not (.JSON.Exists "publicGroupList") }}
+      <p class="color-negative">Page de statut « homelab » introuvable dans Uptime Kuma</p>
+    {{ else }}
+    <ul class="dynamic-columns list-gap-8">
+      {{ range .JSON.Array "publicGroupList" }}
+        {{ range .Array "monitorList" }}
+          {{ $id := .String "id" }}
+          {{ $beats := $hb.JSON.Array (print "heartbeatList." $id) }}
+          {{ $uptime := $hb.JSON.Float (print "uptimeList." $id "_24") }}
+          <div class="flex items-center gap-10">
+            <span class="color-highlight text-truncate block grow">{{ .String "name" }}</span>
+            {{ if gt (len $beats) 0 }}
+              {{ $last := index $beats (sub (len $beats) 1) }}
+              {{ if eq ($last.Int "status") 1 }}
+                <span class="size-h6">{{ $last.Int "ping" }} ms · {{ printf "%.1f" (mul $uptime 100) }}%</span>
+                <span style="width:10px;height:10px;border-radius:50%;background:var(--color-positive)" title="OK"></span>
+              {{ else }}
+                <span class="color-negative size-h6">DOWN</span>
+                <span style="width:10px;height:10px;border-radius:50%;background:var(--color-negative)" title="{{ $last.String "msg" }}"></span>
+              {{ end }}
+            {{ else }}
+              <span class="size-h6">en attente</span>
+            {{ end }}
+          </div>
+        {{ end }}
+      {{ end }}
+    </ul>
+    {{ end }}

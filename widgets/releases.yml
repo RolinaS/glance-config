@@ -1,0 +1,14 @@
+- type: releases
+  title: Mises à jour
+  cache: 1d
+  show-source-icon: true
+  repositories:
+    - glanceapp/glance
+    - portainer/portainer
+    - NginxProxyManager/nginx-proxy-manager
+    - louislam/uptime-kuma
+    - crowdsecurity/crowdsec
+    - prometheus/prometheus
+    - grafana/grafana
+    - prometheus-pve/prometheus-pve-exporter
+    - PaperMC/Paper

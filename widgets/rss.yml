@@ -1,0 +1,14 @@
+- type: rss
+  title: Flux
+  limit: 10
+  collapse-after: 4
+  cache: 12h
+  feeds:
+    - url: https://selfh.st/rss/
+      title: selfh.st
+    - url: https://www.korben.info/feed
+      title: Korben
+    - url: https://www.jeffgeerling.com/blog.xml
+      title: Jeff Geerling
+    - url: https://www.proxmox.com/en/about/news/rss
+      title: Proxmox

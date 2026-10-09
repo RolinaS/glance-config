@@ -1,0 +1,22 @@
+- type: bookmarks
+  groups:
+    - title: Outils
+      links:
+        - title: Proxmox Helper-Scripts
+          url: https://community-scripts.github.io/ProxmoxVE/
+        - title: Tailscale (admin)
+          url: https://login.tailscale.com/admin/machines
+        - title: Freebox OS
+          url: https://mafreebox.freebox.fr
+        - title: DuckDNS
+          url: https://www.duckdns.org
+        - title: Console CrowdSec
+          url: https://app.crowdsec.net
+    - title: Documentation
+      links:
+        - title: Glance
+          url: https://github.com/glanceapp/glance/blob/main/docs/configuration.md
+        - title: Dashboard Icons
+          url: https://dashboardicons.com
+        - title: PaperMC
+          url: https://papermc.io/downloads/paper

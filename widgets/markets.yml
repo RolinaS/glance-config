@@ -1,0 +1,20 @@
+- type: markets
+  markets:
+    - symbol: ESE.PA
+      name: BNP Easy S&P 500
+    - symbol: DCAM.PA
+      name: Amundi PEA Monde
+    - symbol: AI.PA
+      name: Air Liquide
+    - symbol: ENGI.PA
+      name: Engie
+    - symbol: CS.PA
+      name: Axa
+    - symbol: UBI.PA
+      name: Ubisoft
+    - symbol: TTE.PA
+      name: TotalEnergies
+    - symbol: NVDA
+      name: NVIDIA
+    - symbol: BTC-EUR
+      name: Bitcoin
