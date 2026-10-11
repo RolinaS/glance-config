@@ -53,13 +53,29 @@
     <div class="flex justify-between"><span class="size-h5 uppercase"><span class="color-highlight">Stockage</span> · {{ printf "%.0f" (div $disk_used 1073741824) }} / {{ printf "%.0f" (div $disk_total 1073741824) }} Go</span><span class="color-highlight size-h4">{{ printf "%.1f" $disk }}%</span></div>
     <div class="px-bar"><div class="px-fill {{ if ge $disk 80.0 }}crit{{ else if ge $disk 65.0 }}warn{{ end }}" style="width:{{ $disk }}%"></div></div>
 
+    <div class="size-h5 uppercase color-highlight" style="margin-bottom:4px">Nœuds</div>
+    {{ range .JSON.Array "data.#(type==\"node\")#" }}
+      <div class="px-guest">
+        <span>
+          <span class="px-dot" style="background:{{ if eq (.String "status") "online" }}var(--color-positive){{ else }}var(--color-negative){{ end }}"></span>
+          <span class="color-highlight">{{ .String "node" }}</span>
+        </span>
+        <span class="size-h6">
+          {{ if eq (.String "status") "online" }}
+            {{ printf "%.0f" (mul (.Float "cpu") 100) }}% CPU · {{ printf "%.0f" (mul (div (.Float "mem") (.Float "maxmem")) 100) }}% RAM · {{ div (.Int "uptime") 86400 }} j
+          {{ else }}<span class="color-negative">hors ligne</span>{{ end }}
+        </span>
+      </div>
+    {{ end }}
+    <div style="height:12px"></div>
+
     <div class="size-h5 uppercase color-highlight" style="margin-bottom:4px">Invités</div>
     {{ range .JSON.Array "data.#(template==0)#" }}
       {{ if or (eq (.String "type") "lxc") (eq (.String "type") "qemu") }}
       <div class="px-guest">
         <span>
           <span class="px-dot" style="background:{{ if eq (.String "status") "running" }}var(--color-positive){{ else }}var(--color-negative){{ end }}"></span>
-          <span class="color-highlight">{{ .Int "vmid" }} {{ .String "name" }}</span>
+          <span class="color-highlight">{{ .Int "vmid" }} {{ .String "name" }}</span> <span class="size-h6">· {{ .String "node" }}</span>
         </span>
         <span class="size-h6">
           {{ if eq (.String "status") "running" }}
@@ -73,6 +89,6 @@
     <div class="px-counters">
       <div><div class="color-highlight size-h3">{{ len (.JSON.Array "data.#(type==\"lxc\")#|#(status==\"running\")#") }}/{{ len (.JSON.Array "data.#(type==\"lxc\")#|#(template==0)#") }}</div><div class="size-h6 uppercase">LXC</div></div>
       <div><div class="color-highlight size-h3">{{ len (.JSON.Array "data.#(type==\"qemu\")#|#(status==\"running\")#") }}/{{ len (.JSON.Array "data.#(type==\"qemu\")#|#(template==0)#") }}</div><div class="size-h6 uppercase">VM</div></div>
-      <div><div class="color-highlight size-h3">{{ div $uptime 86400 }} j</div><div class="size-h6 uppercase">Uptime</div></div>
+      <div><div class="color-highlight size-h3">{{ len (.JSON.Array "data.#(type==\"node\")#|#(status==\"online\")#") }}/{{ len (.JSON.Array "data.#(type==\"node\")#") }}</div><div class="size-h6 uppercase">Nœuds</div></div>
     </div>
     {{ end }}
