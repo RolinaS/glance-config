@@ -4,9 +4,14 @@
   cache: 1m
   title: Infrastructure
   sites:
-    - title: Proxmox
+    - title: Proxmox · pve
       url: https://pve.${DOMAIN}
       check-url: ${PVE_URL}
+      icon: di:proxmox
+      allow-insecure: true
+    - title: Proxmox · pve2
+      url: https://pve2.${DOMAIN}
+      check-url: ${PVE2_URL}
       icon: di:proxmox
       allow-insecure: true
     - title: Portainer
