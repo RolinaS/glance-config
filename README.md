@@ -60,7 +60,8 @@ Ce dépôt est public. **Il ne contient ni adresse IP, ni port, ni nom de domain
 |---|---|---|
 | `DOMAIN` | Domaine des services (liens cliquables) | `exemple.duckdns.org` |
 | `PROXMOX_TOKEN` | Token API Proxmox en lecture seule | `utilisateur@pve!nom_token=secret` |
-| `PVE_URL` | API Proxmox | `https://ip-proxmox:8006` |
+| `PVE_URL` | API Proxmox (nœud 1) | `https://ip-proxmox:8006` |
+| `PVE2_URL` | Proxmox nœud 2 | `https://ip-proxmox2:8006` |
 | `PORTAINER_URL` | Portainer | `https://ip-docker:9443` |
 | `NPM_URL` | Nginx Proxy Manager | `http://ip-docker:81` |
 | `GATEWAY_URL` | Box / routeur | `http://ip-box` |
