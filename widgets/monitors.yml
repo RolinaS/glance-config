@@ -26,7 +26,7 @@
     - title: Freebox
       url: https://mafreebox.freebox.fr
       check-url: ${GATEWAY_URL}
-      icon: di:freebox
+      icon: di:freebox-delta.png
 
 - type: monitor
   cache: 1m
@@ -52,7 +52,7 @@
     - title: Docmost
       url: https://docs.${DOMAIN}
       check-url: ${DOCMOST_URL}
-      icon: di:docmost
+      icon: di:docmost.png
 #    - title: Nextcloud
 #      url: https://cloud.${DOMAIN}
 #      icon: di:nextcloud
