@@ -45,15 +45,14 @@
       check-url: ${KUMA_URL}
       icon: di:uptime-kuma
 
-# Décommente les services au fur et à mesure de la phase 3
-#- type: monitor
-#  cache: 1m
-#  title: Applications
-#  sites:
-#    - title: Docmost
-#      url: https://docs.${DOMAIN}
-#      check-url: ${DOCMOST_URL}
-#      icon: di:docmost
+- type: monitor
+  cache: 1m
+  title: Applications
+  sites:
+    - title: Docmost
+      url: https://docs.${DOMAIN}
+      check-url: ${DOCMOST_URL}
+      icon: di:docmost
 #    - title: Nextcloud
 #      url: https://cloud.${DOMAIN}
 #      icon: di:nextcloud
